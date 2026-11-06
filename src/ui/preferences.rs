@@ -39,6 +39,14 @@ impl Preferences {
             .build();
 
         settings
+            .bind(
+                "romanization-enabled",
+                &*imp.romanization_enabled_row,
+                "active",
+            )
+            .build();
+
+        settings
             .bind("compact-mode", &*imp.compact_mode_row, "active")
             .build();
 
@@ -249,6 +257,8 @@ mod imp {
         pub maximum_bitrate_row: TemplateChild<adw::SpinRow>,
         #[template_child]
         pub refresh_on_startup_row: TemplateChild<adw::SwitchRow>,
+        #[template_child]
+        pub romanization_enabled_row: TemplateChild<adw::SwitchRow>,
         #[template_child]
         pub compact_mode_row: TemplateChild<adw::SwitchRow>,
         #[template_child]

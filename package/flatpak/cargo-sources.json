@@ -2654,6 +2654,19 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/korean-romanize/korean-romanize-0.2.0.crate",
+        "sha256": "8af4961080a9aff31a90cca2a3e7bfbf9980b0fe9d986a86092983d7f07a5210",
+        "dest": "cargo/vendor/korean-romanize-0.2.0"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"8af4961080a9aff31a90cca2a3e7bfbf9980b0fe9d986a86092983d7f07a5210\", \"files\": {}}",
+        "dest": "cargo/vendor/korean-romanize-0.2.0",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/kstring/kstring-2.0.5.crate",
         "sha256": "7a09b82a7f771ed02dc0dd9b27130a0fa5499fa15ed3027116c1e5e4e591bd9e",
         "dest": "cargo/vendor/kstring-2.0.5"

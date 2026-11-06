@@ -17,6 +17,12 @@
               </object>
             </child>
             <child>
+              <object class="AdwSwitchRow" id="romanization_enabled_row">
+                <property name="title" translatable="yes">Show Romanized Lyrics</property>
+                <property name="subtitle" translatable="yes">Show Korean lyrics in Latin script.</property>
+              </object>
+            </child>
+            <child>
               <object class="AdwSwitchRow" id="album_art_background_row">
                 <property name="title" translatable="yes">Extra eye candy</property>
                 <property name="subtitle" translatable="yes">Utilizes transparency, blurred backgrounds, etc.</property>

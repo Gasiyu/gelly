@@ -1,10 +1,11 @@
 use glib::Object;
+use gtk::gio::prelude::SettingsExt;
 use gtk::{gdk, gio, glib, prelude::*, subclass::prelude::*};
 use log::debug;
 
 use crate::{
     async_utils::spawn_tokio, audio::model::AudioModel, backend::Backend, config,
-    jellyfin::api::Lyric,
+    jellyfin::api::Lyric, romanization,
 };
 
 glib::wrapper! {
@@ -108,6 +109,7 @@ impl Lyrics {
 
     fn create_lyrics_widgets(&self, lyrics: Vec<Lyric>) {
         let imp = self.imp();
+        let romanization_enabled = config::settings().boolean("romanization-enabled");
 
         // Clear existing widgets
         while let Some(child) = imp.lyrics_box.first_child() {
@@ -122,6 +124,9 @@ impl Lyrics {
 
         for lyric in lyrics.iter() {
             let label = gtk::Label::new(Some(&lyric.text));
+            if romanization_enabled && let Some(markup) = romanized_lyric_markup(&lyric.text) {
+                label.set_markup(&markup);
+            }
             label.set_wrap(true);
             label.set_justify(gtk::Justification::Center);
             label.set_valign(gtk::Align::Start);
@@ -150,6 +155,19 @@ impl Lyrics {
 
         imp.lyrics.replace(lyrics);
         imp.lyrics_labels.replace(labels);
+    }
+
+    fn refresh_lyrics(&self) {
+        let imp = self.imp();
+        let lyrics = imp.lyrics.borrow().clone();
+        let position = imp
+            .audio_model
+            .get()
+            .map(AudioModel::position)
+            .unwrap_or_default();
+
+        self.create_lyrics_widgets(lyrics);
+        self.update_lyrics_position(position);
     }
 
     fn update_lyrics_position(&self, position: u32) {
@@ -194,6 +212,27 @@ impl Lyrics {
     }
 }
 
+fn romanized_lyric_markup(text: &str) -> Option<String> {
+    let mut markup = String::new();
+    let mut has_romanization = false;
+
+    for (index, line) in text.split('\n').enumerate() {
+        if index > 0 {
+            markup.push('\n');
+        }
+        markup.push_str(glib::markup_escape_text(line).as_str());
+
+        if let Some(romanzed) = romanization::romanize_line(line) {
+            markup.push_str("\n<span size=\"smaller\">");
+            markup.push_str(glib::markup_escape_text(&romanzed).as_str());
+            markup.push_str("</span>");
+            has_romanization = true;
+        }
+    }
+
+    has_romanization.then_some(markup)
+}
+
 impl Default for Lyrics {
     fn default() -> Self {
         Self::new()
@@ -203,6 +242,7 @@ impl Default for Lyrics {
 mod imp {
     use adw::subclass::prelude::*;
     use glib::subclass::InitializingObject;
+    use gtk::gio::prelude::SettingsExt;
     use gtk::{
         CompositeTemplate,
         glib::{self},
@@ -250,9 +290,34 @@ mod imp {
     impl ObjectImpl for Lyrics {
         fn constructed(&self) {
             self.parent_constructed();
+            crate::config::settings().connect_changed(
+                Some("romanization-enabled"),
+                glib::clone!(
+                    #[weak(rename_to = lyrics)]
+                    self.obj(),
+                    move |_, _| {
+                        lyrics.refresh_lyrics();
+                    }
+                ),
+            );
         }
     }
 
     impl WidgetImpl for Lyrics {}
     impl BoxImpl for Lyrics {}
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn romanizes_each_supported_line_below_its_original() {
+        let markup = romanized_lyric_markup("Hello is\n안녕");
+
+        assert_eq!(
+            markup.as_deref(),
+            Some("Hello is\n안녕\n<span size=\"smaller\">annyeong</span>")
+        );
+    }
 }

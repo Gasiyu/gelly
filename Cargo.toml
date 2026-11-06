@@ -29,6 +29,7 @@ gettext-rs = { version = "0.8.0", features = ["gettext-system"] }
 oo7 = { version = "0.6.0", default-features = false, features = ["async-std", "native_crypto"] }
 async-io = "2.6.0"
 diacritics = "0.2.2"
+korean-romanize = "0.2.0"
 
 [build-dependencies]
 glib-build-tools = "0.22.8"

@@ -20,6 +20,7 @@ mod library;
 mod library_utils;
 mod models;
 mod reporting;
+mod romanization;
 mod subsonic;
 mod ui;
 

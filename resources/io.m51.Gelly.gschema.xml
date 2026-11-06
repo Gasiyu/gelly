@@ -53,6 +53,10 @@
       <default>false</default>
       <summary>Refresh the library on startup</summary>
     </key>
+    <key name="romanization-enabled" type="b">
+      <default>false</default>
+      <summary>Show romanized lyrics</summary>
+    </key>
     <key name="playlist-shuffle-enabled" type="b">
       <default>true</default>
       <summary>Shuffled songs smart playlist enabled</summary>
