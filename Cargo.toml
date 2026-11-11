@@ -30,6 +30,7 @@ oo7 = { version = "0.6.0", default-features = false, features = ["async-std", "n
 async-io = "2.6.0"
 diacritics = "0.2.2"
 korean-romanize = "0.2.0"
+pinyin_pro = "3.29.4"
 
 [build-dependencies]
 glib-build-tools = "0.22.8"

@@ -3447,6 +3447,19 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/pinyin_pro/pinyin_pro-3.29.4.crate",
+        "sha256": "b6ef145a97b5cb42183eb967529942f003d2dd82a41f288027564d60beb99312",
+        "dest": "cargo/vendor/pinyin_pro-3.29.4"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"b6ef145a97b5cb42183eb967529942f003d2dd82a41f288027564d60beb99312\", \"files\": {}}",
+        "dest": "cargo/vendor/pinyin_pro-3.29.4",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/piper/piper-0.2.5.crate",
         "sha256": "c835479a4443ded371d6c535cbfd8d31ad92c5d23ae9770a61bc155e4992a3c1",
         "dest": "cargo/vendor/piper-0.2.5"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-01 10:31-0800\n"
+"POT-Creation-Date: 2026-11-11 10:36+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,33 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: src/application.rs:169
-msgid "Playback error: {}"
-msgstr ""
-
-#: src/application.rs:584
+#: src/application.rs:669
 #, rust-format
 msgid "Failed to download media: {}"
 msgstr ""
 
-#: src/application.rs:627
+#: src/application.rs:712
 #, rust-format
 msgid "Failed to remove download: {}"
 msgstr ""
 
-#: src/application.rs:744
+#: src/application.rs:829
 msgid "Go online to rescan the library."
 msgstr ""
 
-#: src/application.rs:795
+#: src/application.rs:880
 msgid "Must be online"
 msgstr ""
 
-#: src/audio/model.rs:492
+#: src/audio/error.rs:20
+msgid "Unable to load the stream. Is the network available?"
+msgstr ""
+
+#: src/audio/error.rs:22
+msgid "Playback error: {}"
+msgstr ""
+
+#: src/audio/error.rs:26
 msgid "Subsonic does not support seeking transcoded streams."
 msgstr ""
 
-#: src/audio/model.rs:494
+#: src/audio/error.rs:28
 msgid "Failed to seek"
 msgstr ""
 
@@ -117,7 +121,7 @@ msgstr ""
 
 #: src/ui/music_context_menu.rs:34 src/ui/music_context_menu.rs:94
 #: src/ui/playlist_dialogs.rs:20 src/ui/playlist_dialogs.rs:59
-#: src/ui/preferences.rs:111 src/ui/window.rs:188 resources/ui/setup.ui:203
+#: src/ui/preferences.rs:119 src/ui/window.rs:188 resources/ui/setup.ui:203
 msgid "Cancel"
 msgstr ""
 
@@ -331,44 +335,44 @@ msgstr ""
 msgid "Failed to create playlist"
 msgstr ""
 
-#: src/ui/preferences.rs:111 resources/ui/preferences.ui:132
-#: resources/ui/preferences.ui:148
+#: src/ui/preferences.rs:119 resources/ui/preferences.ui:138
+#: resources/ui/preferences.ui:154
 msgid "Clear"
 msgstr ""
 
-#: src/ui/preferences.rs:134 src/ui/preferences.rs:140
-#: src/ui/preferences.rs:188 src/ui/preferences.rs:194
+#: src/ui/preferences.rs:142 src/ui/preferences.rs:148
+#: src/ui/preferences.rs:196 src/ui/preferences.rs:202
 #: src/ui/stream_info_dialog.rs:11 src/ui/stream_info_dialog.rs:53
 #: src/ui/stream_info_dialog.rs:74 src/ui/stream_info_dialog.rs:121
 #: src/ui/stream_info_dialog.rs:122
 msgid "Unknown"
 msgstr ""
 
-#: src/ui/preferences.rs:146
+#: src/ui/preferences.rs:154
 msgid "Clear downloaded music?"
 msgstr ""
 
-#: src/ui/preferences.rs:147
+#: src/ui/preferences.rs:155
 msgid "This will remove all offline media."
 msgstr ""
 
-#: src/ui/preferences.rs:160 src/ui/preferences.rs:214
+#: src/ui/preferences.rs:168 src/ui/preferences.rs:222
 msgid "Clearing…"
 msgstr ""
 
-#: src/ui/preferences.rs:167
+#: src/ui/preferences.rs:175
 msgid "Failed to clear downloaded music."
 msgstr ""
 
-#: src/ui/preferences.rs:200
+#: src/ui/preferences.rs:208
 msgid "Clear image cache?"
 msgstr ""
 
-#: src/ui/preferences.rs:201
+#: src/ui/preferences.rs:209
 msgid "This will remove all cached album and artist art."
 msgstr ""
 
-#: src/ui/preferences.rs:221
+#: src/ui/preferences.rs:229
 msgid "Failed to clear cached images."
 msgstr ""
 
@@ -614,106 +618,114 @@ msgid "The library can be refreshed using ctrl+r or the menu."
 msgstr ""
 
 #: resources/ui/preferences.ui:21
-msgid "Extra eye candy"
+msgid "Show Romanized Lyrics"
 msgstr ""
 
 #: resources/ui/preferences.ui:22
-msgid "Utilizes transparency, blurred backgrounds, etc."
+msgid "Show Korean and Chinese lyrics in Latin script."
 msgstr ""
 
 #: resources/ui/preferences.ui:27
-msgid "Compact Mode"
+msgid "Extra eye candy"
 msgstr ""
 
 #: resources/ui/preferences.ui:28
+msgid "Utilizes transparency, blurred backgrounds, etc."
+msgstr ""
+
+#: resources/ui/preferences.ui:33
+msgid "Compact Mode"
+msgstr ""
+
+#: resources/ui/preferences.ui:34
 msgid "Use smaller UI elements regardless of window size."
 msgstr ""
 
-#: resources/ui/preferences.ui:35 resources/ui/shortcuts_dialog.ui:91
+#: resources/ui/preferences.ui:41 resources/ui/shortcuts_dialog.ui:91
 msgid "Playback"
 msgstr ""
 
-#: resources/ui/preferences.ui:38
+#: resources/ui/preferences.ui:44
 msgid "Normalize Audio"
 msgstr ""
 
-#: resources/ui/preferences.ui:39
+#: resources/ui/preferences.ui:45
 msgid "May require backend plugins."
 msgstr ""
 
-#: resources/ui/preferences.ui:44
+#: resources/ui/preferences.ui:50
 msgid "Gapless Playback"
 msgstr ""
 
-#: resources/ui/preferences.ui:45
+#: resources/ui/preferences.ui:51
 msgid "Uninterrupted playback of consecutive tracks."
 msgstr ""
 
-#: resources/ui/preferences.ui:50
+#: resources/ui/preferences.ui:56
 msgid "Inhibit Suspend"
 msgstr ""
 
-#: resources/ui/preferences.ui:51
+#: resources/ui/preferences.ui:57
 msgid "Prevents the system from suspending while playing"
 msgstr ""
 
-#: resources/ui/preferences.ui:58
+#: resources/ui/preferences.ui:64
 msgid "Transcoding"
 msgstr ""
 
-#: resources/ui/preferences.ui:59
+#: resources/ui/preferences.ui:65
 msgid "Currently Subsonic backends cannot seek transcoded streams."
 msgstr ""
 
-#: resources/ui/preferences.ui:62
+#: resources/ui/preferences.ui:68
 msgid "Transcoding Profile"
 msgstr ""
 
-#: resources/ui/preferences.ui:63
+#: resources/ui/preferences.ui:69
 msgid "Only used when direct play is not available."
 msgstr ""
 
-#: resources/ui/preferences.ui:76
+#: resources/ui/preferences.ui:82
 msgid "Maximum Bitrate (kbps)"
 msgstr ""
 
-#: resources/ui/preferences.ui:77
+#: resources/ui/preferences.ui:83
 msgid "A value of 0 means no limit."
 msgstr ""
 
-#: resources/ui/preferences.ui:96 resources/ui/window.ui:313
+#: resources/ui/preferences.ui:102 resources/ui/window.ui:313
 msgid "Playlists"
 msgstr ""
 
-#: resources/ui/preferences.ui:99
+#: resources/ui/preferences.ui:105
 msgid "Smart Playlists"
 msgstr ""
 
-#: resources/ui/preferences.ui:102
+#: resources/ui/preferences.ui:108
 msgid "Favorite Mix Playlist"
 msgstr ""
 
-#: resources/ui/preferences.ui:107
+#: resources/ui/preferences.ui:113
 msgid "Shuffled Playlist"
 msgstr ""
 
-#: resources/ui/preferences.ui:112
+#: resources/ui/preferences.ui:118
 msgid "Most Played Playlist"
 msgstr ""
 
-#: resources/ui/preferences.ui:122 resources/ui/preferences.ui:125
+#: resources/ui/preferences.ui:128 resources/ui/preferences.ui:131
 msgid "Cache"
 msgstr ""
 
-#: resources/ui/preferences.ui:128
+#: resources/ui/preferences.ui:134
 msgid "Downloaded Music"
 msgstr ""
 
-#: resources/ui/preferences.ui:129 resources/ui/preferences.ui:145
+#: resources/ui/preferences.ui:135 resources/ui/preferences.ui:151
 msgid "Calculating…"
 msgstr ""
 
-#: resources/ui/preferences.ui:144
+#: resources/ui/preferences.ui:150
 msgid "Cached Images"
 msgstr ""
 

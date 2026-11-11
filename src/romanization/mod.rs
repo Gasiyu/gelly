@@ -3,11 +3,12 @@
 //! Romanizers run in order, each receiving the previous successful output. A `None`
 //! result leaves the current text unchanged.
 
+mod chinese;
 mod korean;
 
 type Romanizer = fn(&str) -> Option<String>;
 
-const ROMANIZERS: &[Romanizer] = &[korean::romanize];
+const ROMANIZERS: &[Romanizer] = &[korean::romanize, chinese::romanize];
 
 /// Romanizes a line, returning `None` if it is unchanged.
 pub(crate) fn romanize_line(text: &str) -> Option<String> {
