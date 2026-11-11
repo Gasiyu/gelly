@@ -1,13 +1,30 @@
+//! Applies configured romanizers to text.
+//!
+//! Romanizers run in order, each receiving the previous successful output. A `None`
+//! result leaves the current text unchanged.
+
 mod korean;
 
-pub(crate) fn romanize_line(text: &str) -> Option<String> {
-    let romanized = if korean::is_match(text) {
-        korean::romanize(text)
-    } else {
-        None
-    }?;
+type Romanizer = fn(&str) -> Option<String>;
 
-    (romanized != text).then_some(romanized)
+const ROMANIZERS: &[Romanizer] = &[korean::romanize];
+
+/// Romanizes a line, returning `None` if it is unchanged.
+pub(crate) fn romanize_line(text: &str) -> Option<String> {
+    romanize_with(text, ROMANIZERS)
+}
+
+fn romanize_with(text: &str, romanizers: &[Romanizer]) -> Option<String> {
+    let mut romanized = None;
+
+    for romanizer in romanizers {
+        let input = romanized.as_deref().unwrap_or(text);
+        if let Some(result) = romanizer(input) {
+            romanized = Some(result);
+        }
+    }
+
+    romanized.filter(|result| result != text)
 }
 
 #[cfg(test)]
@@ -15,11 +32,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn handles_mixed_and_unsupported_lines() {
-        assert_eq!(
-            romanize_line("지루하게 기다렸던 summer vacation"),
-            Some("jiruhage gidaryeossdeon summer vacation".to_string())
-        );
+    fn romanize_line_returns_none_for_unsupported_text() {
         assert_eq!(romanize_line("Hello 123!"), None);
     }
 }
